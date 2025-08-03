@@ -60,9 +60,36 @@ function createGrid(){
         gridContainer.appendChild(item);
     }
 
+    hoverEffect();
 
-    
-
-    
 }
 
+function getRandomRGB(){
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function hoverEffect(){
+    const gridItems = document.querySelectorAll(".grid-item");
+    
+
+    gridItems.forEach((item) => {
+        item.dataset.hoverCount = "0";
+        item.style.backgroundColor = getRandomRGB();
+        item.style.opacity = "0";
+
+        item.addEventListener('mouseenter', () => {
+            let count = parseInt(item.dataset.hoverCount);
+
+            if(count < 10){
+                count++;
+                item.dataset.hoverCount = count;
+                item.style.opacity = count * 0.1;
+            }
+
+        })
+    })
+}
