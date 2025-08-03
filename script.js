@@ -21,10 +21,18 @@ btnContainer.appendChild(newGrid);
 
 createGrid();
 
+newGrid.addEventListener('click', () => {
+    createGrid();
+});
 
-
-
-
+resetBtn.addEventListener('click', () => {
+    const gridItems = document.querySelectorAll(".grid-item");
+    
+    gridItems.forEach((item) => {
+        item.dataset.hoverCount = "0";
+        item.style.opacity = "0";
+    })
+});
 
 function createPrompt(){
     let input = prompt("Please Enter Grid Dimension(eg: 16*16, 16 by 16)\nNOTE:- max size is 100*100", "5*5");
